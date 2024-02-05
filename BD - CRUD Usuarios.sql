@@ -22,9 +22,9 @@ CREATE TABLE UserType(
 );
 
 INSERT INTO UserType(id, value) VALUES
-(1, 'Administrador'),
-(2, 'Profesor'),
-(3, 'Estudiante');
+(1, 'Administrator'),
+(2, 'Professor'),
+(3, 'Student');
 
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users(
