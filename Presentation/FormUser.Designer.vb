@@ -26,8 +26,7 @@ Partial Class FormUser
         Me.BtnInsert = New System.Windows.Forms.Button()
         Me.BtnDelete = New System.Windows.Forms.Button()
         Me.BtnUpdate = New System.Windows.Forms.Button()
-        Me.BtnSearchDr = New System.Windows.Forms.Button()
-        Me.BtnSearchDt = New System.Windows.Forms.Button()
+        Me.BtnSearch = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.TblContainer = New System.Windows.Forms.TableLayoutPanel()
         Me.LblUsername = New System.Windows.Forms.Label()
@@ -48,8 +47,7 @@ Partial Class FormUser
         '
         'TblButtons
         '
-        Me.TblButtons.ColumnCount = 6
-        Me.TblButtons.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
+        Me.TblButtons.ColumnCount = 5
         Me.TblButtons.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
         Me.TblButtons.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
         Me.TblButtons.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
@@ -58,10 +56,9 @@ Partial Class FormUser
         Me.TblButtons.Controls.Add(Me.BtnInsert, 0, 0)
         Me.TblButtons.Controls.Add(Me.BtnDelete, 1, 0)
         Me.TblButtons.Controls.Add(Me.BtnUpdate, 2, 0)
-        Me.TblButtons.Controls.Add(Me.BtnSearchDr, 3, 0)
-        Me.TblButtons.Controls.Add(Me.BtnSearchDt, 4, 0)
-        Me.TblButtons.Controls.Add(Me.BtnClose, 5, 0)
-        Me.TblButtons.Location = New System.Drawing.Point(-26, 347)
+        Me.TblButtons.Controls.Add(Me.BtnSearch, 3, 0)
+        Me.TblButtons.Controls.Add(Me.BtnClose, 4, 0)
+        Me.TblButtons.Location = New System.Drawing.Point(21, 315)
         Me.TblButtons.Margin = New System.Windows.Forms.Padding(4)
         Me.TblButtons.Name = "TblButtons"
         Me.TblButtons.RowCount = 1
@@ -76,57 +73,48 @@ Partial Class FormUser
         Me.BtnInsert.Name = "BtnInsert"
         Me.BtnInsert.Size = New System.Drawing.Size(100, 28)
         Me.BtnInsert.TabIndex = 0
-        Me.BtnInsert.Text = "Insert"
+        Me.BtnInsert.Text = "&Insert"
         Me.BtnInsert.UseVisualStyleBackColor = True
         '
         'BtnDelete
         '
-        Me.BtnDelete.Location = New System.Drawing.Point(146, 4)
+        Me.BtnDelete.Location = New System.Drawing.Point(174, 4)
         Me.BtnDelete.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(100, 28)
         Me.BtnDelete.TabIndex = 1
-        Me.BtnDelete.Text = "Delete"
+        Me.BtnDelete.Text = "&Delete"
         Me.BtnDelete.UseVisualStyleBackColor = True
         '
         'BtnUpdate
         '
-        Me.BtnUpdate.Location = New System.Drawing.Point(288, 4)
+        Me.BtnUpdate.Location = New System.Drawing.Point(344, 4)
         Me.BtnUpdate.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnUpdate.Name = "BtnUpdate"
         Me.BtnUpdate.Size = New System.Drawing.Size(100, 28)
         Me.BtnUpdate.TabIndex = 2
-        Me.BtnUpdate.Text = "Update"
+        Me.BtnUpdate.Text = "&Update"
         Me.BtnUpdate.UseVisualStyleBackColor = True
         '
-        'BtnSearchDr
+        'BtnSearch
         '
-        Me.BtnSearchDr.Location = New System.Drawing.Point(430, 4)
-        Me.BtnSearchDr.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtnSearchDr.Name = "BtnSearchDr"
-        Me.BtnSearchDr.Size = New System.Drawing.Size(100, 28)
-        Me.BtnSearchDr.TabIndex = 3
-        Me.BtnSearchDr.Text = "Search DR"
-        Me.BtnSearchDr.UseVisualStyleBackColor = True
-        '
-        'BtnSearchDt
-        '
-        Me.BtnSearchDt.Location = New System.Drawing.Point(572, 4)
-        Me.BtnSearchDt.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtnSearchDt.Name = "BtnSearchDt"
-        Me.BtnSearchDt.Size = New System.Drawing.Size(100, 28)
-        Me.BtnSearchDt.TabIndex = 4
-        Me.BtnSearchDt.Text = "Search DT"
-        Me.BtnSearchDt.UseVisualStyleBackColor = True
+        Me.BtnSearch.Location = New System.Drawing.Point(514, 4)
+        Me.BtnSearch.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnSearch.Name = "BtnSearch"
+        Me.BtnSearch.Size = New System.Drawing.Size(100, 28)
+        Me.BtnSearch.TabIndex = 3
+        Me.BtnSearch.Text = "&Search"
+        Me.BtnSearch.UseVisualStyleBackColor = True
         '
         'BtnClose
         '
-        Me.BtnClose.Location = New System.Drawing.Point(714, 4)
+        Me.BtnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.BtnClose.Location = New System.Drawing.Point(684, 4)
         Me.BtnClose.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(100, 28)
         Me.BtnClose.TabIndex = 5
-        Me.BtnClose.Text = "Close"
+        Me.BtnClose.Text = "&Close"
         Me.BtnClose.UseVisualStyleBackColor = True
         '
         'TblContainer
@@ -146,7 +134,7 @@ Partial Class FormUser
         Me.TblContainer.Controls.Add(Me.TxtName, 1, 3)
         Me.TblContainer.Controls.Add(Me.CmbUserStatus, 1, 4)
         Me.TblContainer.Controls.Add(Me.CmbUserType, 1, 5)
-        Me.TblContainer.Location = New System.Drawing.Point(78, 58)
+        Me.TblContainer.Location = New System.Drawing.Point(126, 31)
         Me.TblContainer.Margin = New System.Windows.Forms.Padding(4)
         Me.TblContainer.Name = "TblContainer"
         Me.TblContainer.RowCount = 6
@@ -281,9 +269,11 @@ Partial Class FormUser
         '
         'FormUser
         '
+        Me.AcceptButton = Me.BtnInsert
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.CancelButton = Me.BtnClose
+        Me.ClientSize = New System.Drawing.Size(893, 386)
         Me.Controls.Add(Me.TblButtons)
         Me.Controls.Add(Me.TblContainer)
         Me.Name = "FormUser"
@@ -299,8 +289,7 @@ Partial Class FormUser
     Friend WithEvents BtnInsert As Button
     Friend WithEvents BtnDelete As Button
     Friend WithEvents BtnUpdate As Button
-    Friend WithEvents BtnSearchDr As Button
-    Friend WithEvents BtnSearchDt As Button
+    Friend WithEvents BtnSearch As Button
     Friend WithEvents BtnClose As Button
     Friend WithEvents TblContainer As TableLayoutPanel
     Friend WithEvents LblUsername As Label
