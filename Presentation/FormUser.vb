@@ -5,6 +5,7 @@ Public Class FormUser
     Private Sub FormUser_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UserStatusBL.LoadCombo(CmbUserStatus)
         UserTypeBL.LoadCombo(CmbUserType)
+        UsersBL.GetUsers(DgvUsers)
     End Sub
 
     Private Sub BtnInsert_Click(sender As Object, e As EventArgs) Handles BtnInsert.Click
@@ -89,6 +90,25 @@ Public Class FormUser
     End Sub
 
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
+        SearchUser()
+    End Sub
+
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
+        End
+    End Sub
+
+    Private Sub Clear()
+        TxtUsername.Text = ""
+        TxtPassword.Text = ""
+        TxtPasswordConfirm.Text = ""
+        TxtName.Text = ""
+        CmbUserStatus.SelectedIndex = 0
+        CmbUserType.SelectedIndex = 0
+
+        UsersBL.GetUsers(DgvUsers)
+    End Sub
+
+    Private Sub SearchUser()
         If String.IsNullOrEmpty(TxtUsername.Text) Then
             MessageBox.Show("Username is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             TxtUsername.Focus()
@@ -107,19 +127,6 @@ Public Class FormUser
             MessageBox.Show($"User {TxtUsername.Text} not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             TxtUsername.Focus()
         End If
-    End Sub
-
-    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
-        End
-    End Sub
-
-    Private Sub Clear(Optional username = "")
-        TxtUsername.Text = username
-        TxtPassword.Text = ""
-        TxtPasswordConfirm.Text = ""
-        TxtName.Text = ""
-        CmbUserStatus.SelectedIndex = 0
-        CmbUserType.SelectedIndex = 0
     End Sub
 
     Private Function FormValidating() As Boolean
@@ -162,4 +169,11 @@ Public Class FormUser
 
         Return False
     End Function
+
+    Private Sub DgvUsers_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvUsers.CellClick
+        If e.RowIndex >= 0 Then
+            TxtUsername.Text = DgvUsers.Rows(e.RowIndex).Cells("Username").Value.ToString()
+            SearchUser()
+        End If
+    End Sub
 End Class

@@ -41,8 +41,10 @@ Partial Class FormUser
         Me.TxtName = New System.Windows.Forms.TextBox()
         Me.CmbUserStatus = New System.Windows.Forms.ComboBox()
         Me.CmbUserType = New System.Windows.Forms.ComboBox()
+        Me.DgvUsers = New System.Windows.Forms.DataGridView()
         Me.TblButtons.SuspendLayout()
         Me.TblContainer.SuspendLayout()
+        CType(Me.DgvUsers, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TblButtons
@@ -58,12 +60,12 @@ Partial Class FormUser
         Me.TblButtons.Controls.Add(Me.BtnUpdate, 2, 0)
         Me.TblButtons.Controls.Add(Me.BtnSearch, 3, 0)
         Me.TblButtons.Controls.Add(Me.BtnClose, 4, 0)
-        Me.TblButtons.Location = New System.Drawing.Point(21, 315)
+        Me.TblButtons.Location = New System.Drawing.Point(21, 279)
         Me.TblButtons.Margin = New System.Windows.Forms.Padding(4)
         Me.TblButtons.Name = "TblButtons"
         Me.TblButtons.RowCount = 1
         Me.TblButtons.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TblButtons.Size = New System.Drawing.Size(852, 46)
+        Me.TblButtons.Size = New System.Drawing.Size(528, 35)
         Me.TblButtons.TabIndex = 3
         '
         'BtnInsert
@@ -71,37 +73,37 @@ Partial Class FormUser
         Me.BtnInsert.Location = New System.Drawing.Point(4, 4)
         Me.BtnInsert.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnInsert.Name = "BtnInsert"
-        Me.BtnInsert.Size = New System.Drawing.Size(100, 28)
+        Me.BtnInsert.Size = New System.Drawing.Size(97, 27)
         Me.BtnInsert.TabIndex = 0
         Me.BtnInsert.Text = "&Insert"
         Me.BtnInsert.UseVisualStyleBackColor = True
         '
         'BtnDelete
         '
-        Me.BtnDelete.Location = New System.Drawing.Point(174, 4)
+        Me.BtnDelete.Location = New System.Drawing.Point(109, 4)
         Me.BtnDelete.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnDelete.Name = "BtnDelete"
-        Me.BtnDelete.Size = New System.Drawing.Size(100, 28)
+        Me.BtnDelete.Size = New System.Drawing.Size(97, 27)
         Me.BtnDelete.TabIndex = 1
         Me.BtnDelete.Text = "&Delete"
         Me.BtnDelete.UseVisualStyleBackColor = True
         '
         'BtnUpdate
         '
-        Me.BtnUpdate.Location = New System.Drawing.Point(344, 4)
+        Me.BtnUpdate.Location = New System.Drawing.Point(214, 4)
         Me.BtnUpdate.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnUpdate.Name = "BtnUpdate"
-        Me.BtnUpdate.Size = New System.Drawing.Size(100, 28)
+        Me.BtnUpdate.Size = New System.Drawing.Size(97, 27)
         Me.BtnUpdate.TabIndex = 2
         Me.BtnUpdate.Text = "&Update"
         Me.BtnUpdate.UseVisualStyleBackColor = True
         '
         'BtnSearch
         '
-        Me.BtnSearch.Location = New System.Drawing.Point(514, 4)
+        Me.BtnSearch.Location = New System.Drawing.Point(319, 4)
         Me.BtnSearch.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnSearch.Name = "BtnSearch"
-        Me.BtnSearch.Size = New System.Drawing.Size(100, 28)
+        Me.BtnSearch.Size = New System.Drawing.Size(97, 27)
         Me.BtnSearch.TabIndex = 3
         Me.BtnSearch.Text = "&Search"
         Me.BtnSearch.UseVisualStyleBackColor = True
@@ -109,10 +111,10 @@ Partial Class FormUser
         'BtnClose
         '
         Me.BtnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BtnClose.Location = New System.Drawing.Point(684, 4)
+        Me.BtnClose.Location = New System.Drawing.Point(424, 4)
         Me.BtnClose.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(100, 28)
+        Me.BtnClose.Size = New System.Drawing.Size(100, 27)
         Me.BtnClose.TabIndex = 5
         Me.BtnClose.Text = "&Close"
         Me.BtnClose.UseVisualStyleBackColor = True
@@ -134,7 +136,7 @@ Partial Class FormUser
         Me.TblContainer.Controls.Add(Me.TxtName, 1, 3)
         Me.TblContainer.Controls.Add(Me.CmbUserStatus, 1, 4)
         Me.TblContainer.Controls.Add(Me.CmbUserType, 1, 5)
-        Me.TblContainer.Location = New System.Drawing.Point(126, 31)
+        Me.TblContainer.Location = New System.Drawing.Point(21, 12)
         Me.TblContainer.Margin = New System.Windows.Forms.Padding(4)
         Me.TblContainer.Name = "TblContainer"
         Me.TblContainer.RowCount = 6
@@ -144,7 +146,7 @@ Partial Class FormUser
         Me.TblContainer.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571!))
         Me.TblContainer.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571!))
         Me.TblContainer.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571!))
-        Me.TblContainer.Size = New System.Drawing.Size(641, 250)
+        Me.TblContainer.Size = New System.Drawing.Size(528, 222)
         Me.TblContainer.TabIndex = 2
         '
         'LblUsername
@@ -160,7 +162,7 @@ Partial Class FormUser
         'LblPassword
         '
         Me.LblPassword.AutoSize = True
-        Me.LblPassword.Location = New System.Drawing.Point(4, 41)
+        Me.LblPassword.Location = New System.Drawing.Point(4, 37)
         Me.LblPassword.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LblPassword.Name = "LblPassword"
         Me.LblPassword.Size = New System.Drawing.Size(67, 16)
@@ -170,7 +172,7 @@ Partial Class FormUser
         'LblPasswordConfirm
         '
         Me.LblPasswordConfirm.AutoSize = True
-        Me.LblPasswordConfirm.Location = New System.Drawing.Point(4, 82)
+        Me.LblPasswordConfirm.Location = New System.Drawing.Point(4, 74)
         Me.LblPasswordConfirm.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LblPasswordConfirm.Name = "LblPasswordConfirm"
         Me.LblPasswordConfirm.Size = New System.Drawing.Size(115, 16)
@@ -180,7 +182,7 @@ Partial Class FormUser
         'LblName
         '
         Me.LblName.AutoSize = True
-        Me.LblName.Location = New System.Drawing.Point(4, 123)
+        Me.LblName.Location = New System.Drawing.Point(4, 111)
         Me.LblName.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LblName.Name = "LblName"
         Me.LblName.Size = New System.Drawing.Size(44, 16)
@@ -190,7 +192,7 @@ Partial Class FormUser
         'LblUserStatus
         '
         Me.LblUserStatus.AutoSize = True
-        Me.LblUserStatus.Location = New System.Drawing.Point(4, 164)
+        Me.LblUserStatus.Location = New System.Drawing.Point(4, 148)
         Me.LblUserStatus.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LblUserStatus.Name = "LblUserStatus"
         Me.LblUserStatus.Size = New System.Drawing.Size(76, 16)
@@ -200,7 +202,7 @@ Partial Class FormUser
         'LblUserType
         '
         Me.LblUserType.AutoSize = True
-        Me.LblUserType.Location = New System.Drawing.Point(4, 205)
+        Me.LblUserType.Location = New System.Drawing.Point(4, 185)
         Me.LblUserType.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LblUserType.Name = "LblUserType"
         Me.LblUserType.Size = New System.Drawing.Size(71, 16)
@@ -210,7 +212,7 @@ Partial Class FormUser
         'TxtUsername
         '
         Me.TxtUsername.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower
-        Me.TxtUsername.Location = New System.Drawing.Point(324, 4)
+        Me.TxtUsername.Location = New System.Drawing.Point(268, 4)
         Me.TxtUsername.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtUsername.MaxLength = 30
         Me.TxtUsername.Name = "TxtUsername"
@@ -219,7 +221,7 @@ Partial Class FormUser
         '
         'TxtPassword
         '
-        Me.TxtPassword.Location = New System.Drawing.Point(324, 45)
+        Me.TxtPassword.Location = New System.Drawing.Point(268, 41)
         Me.TxtPassword.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtPassword.MaxLength = 30
         Me.TxtPassword.Name = "TxtPassword"
@@ -229,7 +231,7 @@ Partial Class FormUser
         '
         'TxtPasswordConfirm
         '
-        Me.TxtPasswordConfirm.Location = New System.Drawing.Point(324, 86)
+        Me.TxtPasswordConfirm.Location = New System.Drawing.Point(268, 78)
         Me.TxtPasswordConfirm.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtPasswordConfirm.MaxLength = 30
         Me.TxtPasswordConfirm.Name = "TxtPasswordConfirm"
@@ -240,7 +242,7 @@ Partial Class FormUser
         'TxtName
         '
         Me.TxtName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TxtName.Location = New System.Drawing.Point(324, 127)
+        Me.TxtName.Location = New System.Drawing.Point(268, 115)
         Me.TxtName.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtName.MaxLength = 100
         Me.TxtName.Name = "TxtName"
@@ -251,7 +253,7 @@ Partial Class FormUser
         '
         Me.CmbUserStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbUserStatus.FormattingEnabled = True
-        Me.CmbUserStatus.Location = New System.Drawing.Point(324, 168)
+        Me.CmbUserStatus.Location = New System.Drawing.Point(268, 152)
         Me.CmbUserStatus.Margin = New System.Windows.Forms.Padding(4)
         Me.CmbUserStatus.Name = "CmbUserStatus"
         Me.CmbUserStatus.Size = New System.Drawing.Size(160, 24)
@@ -261,11 +263,29 @@ Partial Class FormUser
         '
         Me.CmbUserType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbUserType.FormattingEnabled = True
-        Me.CmbUserType.Location = New System.Drawing.Point(324, 209)
+        Me.CmbUserType.Location = New System.Drawing.Point(268, 189)
         Me.CmbUserType.Margin = New System.Windows.Forms.Padding(4)
         Me.CmbUserType.Name = "CmbUserType"
         Me.CmbUserType.Size = New System.Drawing.Size(160, 24)
         Me.CmbUserType.TabIndex = 12
+        '
+        'DgvUsers
+        '
+        Me.DgvUsers.AllowUserToAddRows = False
+        Me.DgvUsers.AllowUserToDeleteRows = False
+        Me.DgvUsers.AllowUserToResizeColumns = False
+        Me.DgvUsers.AllowUserToResizeRows = False
+        Me.DgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvUsers.Location = New System.Drawing.Point(593, 12)
+        Me.DgvUsers.MultiSelect = False
+        Me.DgvUsers.Name = "DgvUsers"
+        Me.DgvUsers.ReadOnly = True
+        Me.DgvUsers.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.DgvUsers.RowHeadersWidth = 51
+        Me.DgvUsers.RowTemplate.Height = 24
+        Me.DgvUsers.Size = New System.Drawing.Size(746, 362)
+        Me.DgvUsers.TabIndex = 4
         '
         'FormUser
         '
@@ -273,7 +293,8 @@ Partial Class FormUser
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnClose
-        Me.ClientSize = New System.Drawing.Size(893, 386)
+        Me.ClientSize = New System.Drawing.Size(1351, 386)
+        Me.Controls.Add(Me.DgvUsers)
         Me.Controls.Add(Me.TblButtons)
         Me.Controls.Add(Me.TblContainer)
         Me.Name = "FormUser"
@@ -281,6 +302,7 @@ Partial Class FormUser
         Me.TblButtons.ResumeLayout(False)
         Me.TblContainer.ResumeLayout(False)
         Me.TblContainer.PerformLayout()
+        CType(Me.DgvUsers, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -304,4 +326,5 @@ Partial Class FormUser
     Friend WithEvents TxtName As TextBox
     Friend WithEvents CmbUserStatus As ComboBox
     Friend WithEvents CmbUserType As ComboBox
+    Friend WithEvents DgvUsers As DataGridView
 End Class

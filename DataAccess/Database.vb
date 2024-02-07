@@ -1,23 +1,23 @@
-﻿Imports System.Data.OleDb
+﻿Imports System.Data.SqlClient
+
 Public Class Database
     Private ReadOnly connectionString As String
-    Private ReadOnly connection As OleDbConnection
-    Private ReadOnly command As OleDbCommand
+    Private ReadOnly connection As SqlConnection
+    Private ReadOnly command As SqlCommand
 
     Public Property DbCodeError As Integer
     Public Property DbMessageError As String
 
-    Private ReadOnly dataSource = "ESTEBAN\SQLEXPRESS"
-    Private ReadOnly database = "VB_Users"
-    Private ReadOnly user = "sa"
-    Private ReadOnly password = "1234"
+    Private ReadOnly dataSource As String = "ESTEBAN\SQLEXPRESS"
+    Private ReadOnly database As String = "VB_Users"
+    Private ReadOnly user As String = "sa"
+    Private ReadOnly password As String = "1234"
 
     Public Sub New()
         DbCodeError = 0
         DbMessageError = ""
-
-        connectionString = $"Provider=MSOLEDBSQL;Data Source={dataSource};Initial Catalog={database};User Id={user};Password={password}"
-        connection = New OleDbConnection(connectionString)
+        connectionString = $"Data Source={dataSource};Initial Catalog={database};User Id={user};Password={password}"
+        connection = New SqlConnection(connectionString)
         command = connection.CreateCommand()
     End Sub
 
@@ -43,8 +43,8 @@ Public Class Database
         command.CommandType = type
     End Sub
 
-    Public Sub AddParameter(name As String, type As OleDbType, value As Object)
-        command.Parameters.AddWithValue(name, value).OleDbType = type
+    Public Sub AddParameter(name As String, type As SqlDbType, value As Object)
+        command.Parameters.AddWithValue(name, value).SqlDbType = type
     End Sub
 
     Public Function ExecuteNonQuery() As Integer
@@ -61,7 +61,7 @@ Public Class Database
         End Try
     End Function
 
-    Public Function ExecuteReader() As OleDbDataReader
+    Public Function ExecuteReader() As SqlDataReader
         Try
             Connect()
             Return command.ExecuteReader(CommandBehavior.CloseConnection)
@@ -76,7 +76,7 @@ Public Class Database
         Dim dataTable As New DataTable()
         Try
             Connect()
-            Using dataAdapter As New OleDbDataAdapter(command)
+            Using dataAdapter As New SqlDataAdapter(command)
                 dataAdapter.Fill(dataTable)
             End Using
         Catch ex As Exception

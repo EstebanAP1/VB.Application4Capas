@@ -4,7 +4,7 @@ Public Class UserStatusDAO
         Dim statusList As New List(Of UserStatus)
 
         Dim data As New Data
-        Dim dataTable = data.LoadDataTable("SELECT [id], [value] FROM [UserStatus]")
+        Dim dataTable = data.LoadDataTable("SELECT id,value FROM UserStatus")
 
         For Each row As DataRow In dataTable.Rows
             Dim status As New UserStatus With {

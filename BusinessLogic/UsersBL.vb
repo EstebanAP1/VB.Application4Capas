@@ -1,5 +1,7 @@
 ﻿Imports Common
 Imports DataAccess
+Imports System.Runtime.Serialization
+Imports System.Windows.Forms
 
 Public Class UsersBL
     Public Property DbCodeError As Integer
@@ -49,4 +51,16 @@ Public Class UsersBL
     Public Shared Function GetUser(username As String) As Users
         Return UsersDAO.GetUser(username)
     End Function
+
+    Public Shared Sub GetUsers(DgvUsers As DataGridView)
+        Dim users = UsersDAO.GetUsers()
+        DgvUsers.DataSource = users.Select(Function(user) New With {
+            user.Username,
+            user.Name,
+            user.StatusValue,
+            user.TypeValue
+        }).ToList()
+        DgvUsers.Columns("StatusValue").HeaderText = "Status"
+        DgvUsers.Columns("TypeValue").HeaderText = "Type"
+    End Sub
 End Class

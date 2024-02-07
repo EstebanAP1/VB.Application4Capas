@@ -1,4 +1,4 @@
-﻿Imports System.Data.OleDb
+﻿Imports Common
 
 Public Class Data
     Private db As Database
@@ -8,7 +8,7 @@ Public Class Data
         db.CreateCommand(command, type)
     End Sub
 
-    Public Sub AddParameter(name As String, type As OleDbType, value As Object)
+    Public Sub AddParameter(name As String, type As SqlDbType, value As Object)
         db.AddParameter(name, type, value)
     End Sub
 
@@ -20,5 +20,4 @@ Public Class Data
         Prepare(command, type)
         Return LoadDataTable()
     End Function
-
 End Class

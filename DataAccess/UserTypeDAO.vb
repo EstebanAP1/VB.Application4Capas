@@ -4,7 +4,7 @@ Public Class UserTypeDAO
         Dim typeList As New List(Of UserType)
 
         Dim data As New Data
-        Dim dataTable = data.LoadDataTable("SELECT [id], [value] FROM [UserType]")
+        Dim dataTable = data.LoadDataTable("SELECT id,value FROM UserType")
 
         For Each row As DataRow In dataTable.Rows
             Dim type As New UserType With {
