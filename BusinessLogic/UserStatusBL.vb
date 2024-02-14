@@ -7,5 +7,6 @@ Public Class UserStatusBL
         combo.DataSource = statusDAO.LoadCombo()
         combo.DisplayMember = "Value"
         combo.ValueMember = "Id"
+        combo.SelectedIndex = -1
     End Sub
 End Class

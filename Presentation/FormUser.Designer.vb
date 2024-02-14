@@ -283,7 +283,9 @@ Partial Class FormUser
         Me.DgvUsers.ReadOnly = True
         Me.DgvUsers.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.DgvUsers.RowHeadersWidth = 51
+        Me.DgvUsers.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.DgvUsers.RowTemplate.Height = 24
+        Me.DgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DgvUsers.Size = New System.Drawing.Size(746, 362)
         Me.DgvUsers.TabIndex = 4
         '
@@ -292,7 +294,6 @@ Partial Class FormUser
         Me.AcceptButton = Me.BtnInsert
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.CancelButton = Me.BtnClose
         Me.ClientSize = New System.Drawing.Size(1351, 386)
         Me.Controls.Add(Me.DgvUsers)
         Me.Controls.Add(Me.TblButtons)

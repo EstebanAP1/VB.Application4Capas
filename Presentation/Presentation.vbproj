@@ -73,10 +73,34 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormChangePass.Designer.vb">
+      <DependentUpon>FormChangePass.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormChangePass.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormUser.Designer.vb">
       <DependentUpon>FormUser.vb</DependentUpon>
     </Compile>
     <Compile Include="FormUser.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.vb">
+      <DependentUpon>LoginForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MdiAdmin.Designer.vb">
+      <DependentUpon>MdiAdmin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MdiAdmin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MdiLimited.Designer.vb">
+      <DependentUpon>MdiLimited.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MdiLimited.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -97,8 +121,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormChangePass.resx">
+      <DependentUpon>FormChangePass.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormUser.resx">
       <DependentUpon>FormUser.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MdiAdmin.resx">
+      <DependentUpon>MdiAdmin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MdiLimited.resx">
+      <DependentUpon>MdiLimited.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

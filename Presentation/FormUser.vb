@@ -6,6 +6,7 @@ Public Class FormUser
         UserStatusBL.LoadCombo(CmbUserStatus)
         UserTypeBL.LoadCombo(CmbUserType)
         UsersBL.GetUsers(DgvUsers)
+        AutoCompleteUsername()
     End Sub
 
     Private Sub BtnInsert_Click(sender As Object, e As EventArgs) Handles BtnInsert.Click
@@ -22,7 +23,7 @@ Public Class FormUser
         Dim result = bl.Insert(user)
 
         If bl.DbCodeError <> 0 Then
-            If bl.DbCodeError = -2147217873 Then
+            If bl.DbCodeError = -2146232060 Then
                 MessageBox.Show($"User {TxtUsername.Text} already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 TxtUsername.Focus()
                 Return
@@ -36,11 +37,7 @@ Public Class FormUser
     End Sub
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
-        If String.IsNullOrEmpty(TxtUsername.Text) Then
-            MessageBox.Show("Username is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            TxtUsername.Focus()
-            Return
-        End If
+        If Validation.ValidateTextBox(TxtUsername, "Username is required") Then Return
 
         Dim user As New Users With {
             .Username = TxtUsername.Text
@@ -89,31 +86,8 @@ Public Class FormUser
         End If
     End Sub
 
-    Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
-        SearchUser()
-    End Sub
-
-    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
-        End
-    End Sub
-
-    Private Sub Clear()
-        TxtUsername.Text = ""
-        TxtPassword.Text = ""
-        TxtPasswordConfirm.Text = ""
-        TxtName.Text = ""
-        CmbUserStatus.SelectedIndex = 0
-        CmbUserType.SelectedIndex = 0
-
-        UsersBL.GetUsers(DgvUsers)
-    End Sub
-
     Private Sub SearchUser()
-        If String.IsNullOrEmpty(TxtUsername.Text) Then
-            MessageBox.Show("Username is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            TxtUsername.Focus()
-            Return
-        End If
+        If Validation.ValidateTextBox(TxtUsername, "Username is required") Then Return
 
         Dim user As Users = UsersBL.GetUser(TxtUsername.Text)
 
@@ -129,46 +103,9 @@ Public Class FormUser
         End If
     End Sub
 
-    Private Function FormValidating() As Boolean
-        If String.IsNullOrWhiteSpace(TxtUsername.Text) Then
-            MessageBox.Show("Username is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            TxtUsername.Focus()
-            Return True
-        End If
-        If String.IsNullOrWhiteSpace(TxtPassword.Text) Then
-            MessageBox.Show("Password is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            TxtPassword.Focus()
-            Return True
-        End If
-        If String.IsNullOrWhiteSpace(TxtPasswordConfirm.Text) Then
-            MessageBox.Show("Password confirm is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            TxtPasswordConfirm.Focus()
-            Return True
-        End If
-        If String.IsNullOrWhiteSpace(TxtName.Text) Then
-            MessageBox.Show("Name is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            TxtName.Focus()
-            Return True
-        End If
-        If (CmbUserStatus.SelectedIndex = -1) Then
-            MessageBox.Show("Status is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            CmbUserStatus.Focus()
-            Return True
-        End If
-        If (CmbUserType.SelectedIndex = -1) Then
-            MessageBox.Show("Type is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            CmbUserType.Focus()
-            Return True
-        End If
-        If TxtPassword.Text <> TxtPasswordConfirm.Text Then
-            MessageBox.Show("Passwords must be equals", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            TxtPasswordConfirm.Text = ""
-            TxtPasswordConfirm.Focus()
-            Return True
-        End If
-
-        Return False
-    End Function
+    Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
+        SearchUser()
+    End Sub
 
     Private Sub DgvUsers_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvUsers.CellClick
         If e.RowIndex >= 0 Then
@@ -176,4 +113,41 @@ Public Class FormUser
             SearchUser()
         End If
     End Sub
+
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
+        End
+    End Sub
+
+    Private Sub Clear()
+        TxtUsername.Clear()
+        TxtPassword.Clear()
+        TxtPasswordConfirm.Clear()
+        TxtName.Clear()
+        CmbUserStatus.SelectedIndex = -1
+        CmbUserType.SelectedIndex = -1
+
+        UsersBL.GetUsers(DgvUsers)
+        AutoCompleteUsername()
+    End Sub
+
+    Private Sub AutoCompleteUsername()
+        Dim users = UsersBL.GetUsernameList()
+        Dim source As New AutoCompleteStringCollection()
+        source.AddRange(users.ToArray())
+        TxtUsername.AutoCompleteCustomSource = source
+        TxtUsername.AutoCompleteMode = AutoCompleteMode.SuggestAppend
+        TxtUsername.AutoCompleteSource = AutoCompleteSource.CustomSource
+    End Sub
+
+    Private Function FormValidating() As Boolean
+        If Validation.ValidateTextBox(TxtUsername, "Username is required") Then Return True
+        If Validation.ValidateTextBox(TxtPassword, "Password is required") Then Return True
+        If Validation.ValidateTextBox(TxtPasswordConfirm, "Password confirm is required") Then Return True
+        If Validation.ValidateTextBox(TxtName, "Name is required") Then Return True
+        If Validation.ValidateComboBox(CmbUserStatus, "User status is required") Then Return True
+        If Validation.ValidateComboBox(CmbUserType, "User type is required") Then Return True
+        If Validation.ValidatePassword(TxtPassword, TxtPasswordConfirm) Then Return True
+
+        Return False
+    End Function
 End Class

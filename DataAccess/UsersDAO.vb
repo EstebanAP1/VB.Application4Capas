@@ -1,4 +1,5 @@
 ﻿Imports Common
+Imports Microsoft.VisualBasic.ApplicationServices
 
 Public Class UsersDAO
     Private ReadOnly db As New Database
@@ -103,5 +104,34 @@ Public Class UsersDAO
         Next
 
         Return users
+    End Function
+
+    Public Shared Function GetUsernameList() As List(Of String)
+        Dim usernames As New List(Of String)
+        Dim data As New Data
+        Dim query = "SELECT username FROM Users"
+        Dim dataTable = data.LoadDataTable(query)
+
+        For Each row As DataRow In dataTable.Rows
+            usernames.Add(row("username").ToString())
+        Next
+
+        Return usernames
+    End Function
+
+    Public Function ChangePassword(password As String) As Integer
+        Dim result As Integer
+        Dim query = "UPDATE Users SET password=@password WHERE username=@username"
+        db.CreateCommand(query)
+        db.AddParameter("@username", SqlDbType.VarChar, Users.ActiveUser)
+        db.AddParameter("@password", SqlDbType.VarChar, password)
+        result = db.ExecuteNonQuery()
+
+        If db.DbCodeError <> 0 Then
+            DbCodeError = db.DbCodeError
+            DbMessageError = db.DbMessageError
+        End If
+
+        Return result
     End Function
 End Class

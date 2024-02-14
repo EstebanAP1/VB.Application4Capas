@@ -1,5 +1,6 @@
 ﻿Imports Common
 Imports DataAccess
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports System.Runtime.Serialization
 Imports System.Windows.Forms
 
@@ -63,4 +64,30 @@ Public Class UsersBL
         DgvUsers.Columns("StatusValue").HeaderText = "Status"
         DgvUsers.Columns("TypeValue").HeaderText = "Type"
     End Sub
+
+    Public Shared Function GetUsernameList() As List(Of String)
+        Return UsersDAO.GetUsernameList()
+    End Function
+
+    Public Shared Function Login(username As String, password As String) As Users
+        Dim users = GetUser(username)
+
+        If users.Found And users.Password = password And users.Status = 1 Then
+            users.Authenticated = True
+        End If
+
+        Return users
+    End Function
+
+    Public Function ChangePassword(password As String) As Integer
+        Dim dao As New UsersDAO
+        Dim result = dao.ChangePassword(password)
+
+        If dao.DbCodeError <> 0 Then
+            DbCodeError = dao.DbCodeError
+            DbMessageError = dao.DbMessageError
+        End If
+
+        Return result
+    End Function
 End Class

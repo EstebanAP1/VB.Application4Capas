@@ -23,8 +23,7 @@ CREATE TABLE UserType(
 
 INSERT INTO UserType(id, value) VALUES
 (1, 'Administrator'),
-(2, 'Professor'),
-(3, 'Student');
+(2, 'Limited');
 
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users(
@@ -35,3 +34,6 @@ CREATE TABLE Users(
 	status INT NOT NULL REFERENCES UserStatus(id),
 	type INT NOT NULL REFERENCES UserType(id)
 );
+
+INSERT INTO Users(username, password, name, status, type)
+VALUES ('admin', 1234, 'Admin', 1, 1);

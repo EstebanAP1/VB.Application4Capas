@@ -83,6 +83,7 @@
     <Compile Include="UsersBL.vb" />
     <Compile Include="UserStatusBL.vb" />
     <Compile Include="UserTypeBL.vb" />
+    <Compile Include="Validation.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
